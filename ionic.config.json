@@ -1,5 +1,7 @@
 {
   "name": "CCAnalyse",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
