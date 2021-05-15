@@ -1,10 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-row>
-      <ion-title style="color: #1a1abf; font-weight: bold;">
-        Currencies information
+      <ion-title style="color: #1a1abf; font-weight: bold;font-family: Chilanka,serif;">
+        Currencies Information
       </ion-title>
-      <ion-icon (click)="presentModal()" name="logo-bitcoin" size="large"></ion-icon>
+      <ion-icon style="margin-right: 20px" (click)="presentModal()" name="logo-bitcoin" size="large"></ion-icon>
     </ion-row>
   </ion-toolbar>
   <ion-progress-bar *ngIf="!currenciesInfoLoaded" type="indeterminate"></ion-progress-bar>

@@ -24,7 +24,9 @@ export class StorageService {
   }
 
   public async firstInit() {
-    return await this.set(['BTC', 'ETH']);
+    const currentCurr = await this.get();
+    if (!currentCurr)
+      {return await this.set(['BTC', 'ETH']);}
   }
 
   public async get() {

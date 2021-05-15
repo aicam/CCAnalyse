@@ -1,5 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {StorageService} from '../storage.service';
 import { Chart, registerables } from 'chart.js';
+import {gatewayAPI} from '../gateway.service';
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -7,12 +10,21 @@ import { Chart, registerables } from 'chart.js';
 })
 export class Tab2Page implements OnInit{
   @ViewChild('barCanvas', {static: true}) barCanvas: ElementRef;
+  ccs: any;
+
   private barChart: Chart;
-  constructor() {
+  constructor(private gateway: gatewayAPI, private storage: StorageService) {
     Chart.register(...registerables);
   }
 
   ngOnInit(): void {
+    this.storage.init().then(async () => {
+      await this.storage.firstInit();
+      this.ccs = await this.storage.get();
+      this.gateway.get_currenciesSparkline(this.ccs).subscribe(result => {
+        console.log(result);
+      });
+    });
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {
